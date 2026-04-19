@@ -34,7 +34,10 @@ const stats = [
   { label: "连续打卡", value: "5", unit: "天", icon: "🔥", color: "#E8856D" },
 ];
 
-const settingGroups = [
+type SettingItem = { icon: React.ReactNode; label: string; sub: string; danger?: boolean };
+type SettingGroup = { title: string; items: SettingItem[] };
+
+const settingGroups: SettingGroup[] = [
   {
     title: "账户",
     items: [
