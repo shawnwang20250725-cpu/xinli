@@ -278,7 +278,7 @@ export default function ProfilePage() {
                 {[
                   "你的情绪在周一和周三通常偏低，可能与工作节奏有关",
                   "晚上 10 点之后的签到情绪评分平均低于白天 1.5 分",
-                  ""焦虑"是你本月最常选择的情绪标签（出现 8 次）",
+                  '"焦虑"是你本月最常选择的情绪标签（出现 8 次）',
                   "与上月相比，你的平均情绪分提升了 0.4 分",
                 ].map((insight, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm" style={{ color: "#7A9BAB" }}>
