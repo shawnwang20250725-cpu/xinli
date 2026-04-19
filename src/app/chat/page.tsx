@@ -234,16 +234,17 @@ const formatTime = () => {
   return `${now.getHours().toString().padStart(2, "0")}:${now.getMinutes().toString().padStart(2, "0")}`;
 };
 
+const makeInitialMessages = (): Message[] => [
+  {
+    id: 1,
+    role: "ai",
+    text: "你好，我是心语。不管是什么事，不管大事小事，你都可以在这里说。\n\n我会认真地听，不评判，不急着给建议。就像和一个老朋友聊天一样。\n\n今天，你想聊什么？",
+    time: formatTime(),
+  },
+];
+
 export default function ChatPage() {
-  // 用函数初始化，只在客户端首次执行，避免服务端/客户端时间不一致
-  const [messages, setMessages] = useState<Message[]>(() => [
-    {
-      id: 1,
-      role: "ai",
-      text: "你好，我是心语。不管是什么事，不管大事小事，你都可以在这里说。\n\n我会认真地听，不评判，不急着给建议。就像和一个老朋友聊天一样。\n\n今天，你想聊什么？",
-      time: formatTime(),
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>(makeInitialMessages);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [isStreaming, setIsStreaming] = useState(false);
@@ -444,7 +445,7 @@ export default function ChatPage() {
               <button
                 title="重新开始"
                 className="p-2 rounded-xl transition-colors hover:bg-brand/8"
-                onClick={() => setMessages(initialMessages)}
+                onClick={() => { sessionStorage.removeItem("xinyu_session_id"); sessionIdRef.current = null; setMessages(makeInitialMessages()); }}
               >
                 <RefreshCw className="w-4 h-4" style={{ color: "#A8BFC9" }} />
               </button>
